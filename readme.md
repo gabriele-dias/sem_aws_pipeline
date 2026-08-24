@@ -4,7 +4,7 @@
 
 
 <h3 align="center">
-  Pipeline de Infraestrutura (AWS + Terraform + Github Actions + Multi Env)
+  Pipeline de Infraestrutura (Terraform + Github Actions + Multi Env)
 </h3>
 
 <p align="center">
@@ -29,13 +29,14 @@ Para um maior entendimento do código deste repositório, [assista nosso vídeo 
 </p>
 
 ## Como começar?
-- Crie o Identity Provider do Github em sua conta AWS
-- Crie uma IAM Role em sua conta AWS (Permissão mínimia de S3 e DynamoDB)
-- Crie um Bucket S3 em sua conta AWS (Habilite o Bucket Versioning)
-- Crie uma tabela no DynamoDB na sua conta AWS (PartitionKey com o nome "LockID")
-- Clone esse repositório
-- Configure os arquivos workflow 
-- Pronto! Você já está habilitado para implantar infras na AWS com Terraform via pipeline
+- Instale o Terraform
+- Clone este repositório
+- Execute `terraform init` dentro de `infra`
+- Escolha o workspace `dev` ou `prod`
+- Execute `terraform plan` e `terraform apply` usando o arquivo de variáveis do ambiente
+
+Esta versão executa sem AWS: o estado fica localmente e o bucket é representado por um arquivo local.
+Consulte [docs/sem-aws.md](docs/sem-aws.md) para entender todas as alterações, comandos e limitações.
 
 :mag: Baixe o projeto e teste você mesmo na prática.
 
@@ -45,4 +46,4 @@ Developed by Build & Run
 
 ### Referências
 
-- [How to connect Github Actions to AWS](https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/)
+- [Documentação do Terraform](https://developer.hashicorp.com/terraform/docs)

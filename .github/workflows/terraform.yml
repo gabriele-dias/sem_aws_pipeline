@@ -6,18 +6,6 @@ on:
       environment:
         type: string
         required: true
-      aws-assume-role-arn:
-        type: string
-        required: true
-      aws-region:
-        type: string
-        required: true
-      aws-statefile-s3-bucket:
-        type: string
-        required: true
-      aws-lock-dynamodb-table:
-        type: string
-        required: true
 
 jobs:
   terraform:
@@ -35,13 +23,6 @@ jobs:
         with:
           terraform_version: 1.8.3
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ inputs.aws-assume-role-arn }}
-          role-session-name: GitHub_to_AWS_via_FederatedOIDC
-          aws-region: ${{ inputs.aws-region }}
-
       - name: Read destroy configuration
         id: read-destroy-config
         run: |
@@ -49,15 +30,10 @@ jobs:
           echo "destroy=$(echo $DESTROY)" >> $GITHUB_OUTPUT
 
       - name: Terraform Init
-        run: |
-          cd infra && terraform init \
-            -backend-config="bucket=${{ inputs.aws-statefile-s3-bucket }}" \
-            -backend-config="key=${{ github.event.repository.name }}" \
-            -backend-config="region=${{ inputs.aws-region }}" \
-            -backend-config="dynamodb_table=${{ inputs.aws-lock-dynamodb-table }}"
+        run: cd infra && terraform init
 
       - name: Terraform Validate
-        run: terraform validate
+        run: cd infra && terraform validate
 
       - name: Terraform Destroy
         if: steps.read-destroy-config.outputs.destroy == 'true'
