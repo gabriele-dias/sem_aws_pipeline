@@ -67,3 +67,7 @@ terraform destroy -var-file="envs/dev/terraform.tfvars"
 ## Limites desta versao
 
 Esta configuracao nao cria um bucket, uma VM ou qualquer outro recurso cloud. Ela e adequada para aprendizado, testes da sintaxe do Terraform e demonstracao da pipeline. Para provisionar infraestrutura real sem AWS, substitua o recurso `local_file` por um provider de Azure, Google Cloud, Oracle Cloud, Hetzner, MinIO ou outro servico escolhido.
+
+## Creditos
+
+Projeto original: [Build & Run](https://github.com/buildrun-tech/buildrun-infra-terraform-pipeline).

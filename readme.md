@@ -47,3 +47,7 @@ Developed by Build & Run
 ### Referências
 
 - [Documentação do Terraform](https://developer.hashicorp.com/terraform/docs)
+
+## Créditos
+
+Projeto original: [Build & Run](https://github.com/buildrun-tech/buildrun-infra-terraform-pipeline).
